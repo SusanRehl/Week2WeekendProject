@@ -27,7 +27,7 @@ $(function() {
        url: 'https://raw.githubusercontent.com/devjanaprime/2.4-jQueryAjaxJSON/master/students.json',
        dataType: 'json',
        success: function(data){
-
+         //test
           var studentNumber = data.students.length;
           var name = data.students[0].first_name.charAt(0).toUpperCase() + data.students[0].first_name.slice(1) + " " + data.students[0].last_name.charAt(0).toUpperCase() + data.students[0].last_name.slice(1);
           var city = data.students[0].city.charAt(0).toUpperCase() + data.students[0].city.slice(1);
