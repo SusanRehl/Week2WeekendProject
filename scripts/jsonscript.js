@@ -1,25 +1,3 @@
-//X  make an AJAX call from the client side app.js,
-//        using the .ajax method and access the json data through the url
-//        above. When successful, it should bring the data back down.
-//
-//X  You will then need to combine that with what you have learned
-//  about parsing objects and arrays to complete the challenge.
-//
-// Ajax reference: https://github.com/devjanaprime/2.4-jQueryAjaxJSON/blob/master/scripts/getJsonExample.js
-//
-//X  on the DOM, one person at a time represented -
-//    the info for the first person in the json data.
-//X  On the screen should also be Prev and Next buttons,
-//     that when pressed, show the information for the appropriate person.
-//X  These should wrap - prev when on the first person should wrap
-//      around to show the last person and vice versa.
-//
-// Also on the dom should be a display showing the number of people
-// and which is being currently viewed (eg. 2/20)
-//
-//X  When a person is displayed, show their name, their city,
-//    and their piece of shoutout feedback.
-//X  Only one person should be shown at any given time.
 var list;
 var studentNumber = 0;
 var firstName = "";
@@ -43,10 +21,18 @@ $(function() {
      }); // end ajax  object
 
 function startLoad() {    // create function to load the first student
-  listStudent();   // calls listStudent function
+  showStudent();   // calls listStudent function
 }
 
-function listStudent() {
+// function loadButtons() {   // creates buttons for each student
+//   var navContainer = document.createElement('div');
+//   navContainer.className='container';
+//
+//
+//   $('body').append(studentContainer);
+// }
+
+function showStudent() {
   var studentContainer = document.createElement('div');
   studentContainer.className='container';
 
@@ -55,39 +41,42 @@ function listStudent() {
   city = list.students[studentNumber].city;
   shoutout = list.students[studentNumber].shoutout;
 
+  var imgUrl="images/" + studentNumber + ".png";
+  $('#picStudent').attr("src", imgUrl);
+
   var studentName = document.createElement('div');
   studentName.textContent= firstName.charAt(0).toUpperCase() + firstName.slice(1) + " " + lastName.charAt(0).toUpperCase() + lastName.slice(1);
-  studentName.className = 'name';
+  studentName.className = 'name h3';
 
   var studentCity = document.createElement('div');
-  studentCity.textContent= city.charAt(0).toUpperCase() + city.slice(1);
-  studentCity.className = 'city';
+  studentCity.textContent= "Keeping " + city.charAt(0).toUpperCase() + city.slice(1) + " safe from evil!";
+  studentCity.className = 'city lead';
 
   var studentShoutout = document.createElement('div');
   studentShoutout.textContent= shoutout.charAt(0).toUpperCase() + shoutout.slice(1);
-  studentShoutout.className = 'shoutout';
+  studentShoutout.className = 'shoutout lead';
 
   var prevButton = document.createElement('button');
-  prevButton.textContent='PREV';
-  prevButton.className = 'prev';
+  prevButton.textContent='< PREV';
+  prevButton.className = 'prev btn btn-primary';
 
   var nextButton = document.createElement('button');
-  nextButton.textContent='NEXT';
-  nextButton.className = 'next';
+  nextButton.textContent='NEXT >';
+  nextButton.className = 'next btn btn-primary';
 
   var recordNum = document.createElement('div');
   recordNum.textContent=studentNumber + 1 + " / " + list.students.length;
-  recordNum.className = 'studentNum';
+  recordNum.className = 'studentNum h6';
 
   studentContainer.appendChild(studentName);
   studentContainer.appendChild(studentCity);
   studentContainer.appendChild(studentShoutout);
-  studentContainer.appendChild(recordNum);
   studentContainer.appendChild(prevButton);
   studentContainer.appendChild(nextButton);
-
+  studentContainer.appendChild(recordNum);
 
   $('body').append(studentContainer);
+
 }
 
 $(document).on('click', '.next', function(){
@@ -98,9 +87,8 @@ $(document).on('click', '.next', function(){
     } else {
       $(this).parent().remove();
       studentNumber++;
-      console.log(studentNumber);
     }
-    listStudent();
+    showStudent();
      });
 
 $(document).on('click', '.prev', function(){
@@ -108,12 +96,10 @@ $(document).on('click', '.prev', function(){
    if (studentNumber === 0) {
      $(this).parent().remove();
      studentNumber = list.students.length-1;
-     console.log(studentNumber);
    } else {
       $(this).parent().remove();
      studentNumber--;
-     console.log(studentNumber);
    }
-   listStudent();
+   showStudent();
     });
 });
