@@ -112,7 +112,6 @@ $(document).on('click', '.next', function(){  // next button function WORKS PERF
 
 $(document).on('click', '.prev', function(){  // prev button function - shows the proper data but deletes the topmost student button on click
    $(this).parent().find();
-   $(this).next().remove();
    $(this).parent().parent().next().next().remove();
    if (studentNumber === 0) {
      studentNumber = list.students.length-1;
