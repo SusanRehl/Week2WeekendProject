@@ -127,7 +127,7 @@ $(document).on('click', '.studentBut', function(){  // student button function -
     $(this).parent().parent().next().next().remove();
    for (var j=0; j<list.students.length; j++) {
      if (studentButton.textContent == studentArray[j].lastName){  // can't get studentNumber assigned to the studentButton
- s        studentNumber = studentArray[j].studentRefNum;
+        studentNumber = studentArray[j].studentRefNum;
      }
    }
    showStudent();
