@@ -1,3 +1,13 @@
-h2 {
- color: blue;
+h1 {
+ color: #9d3a9c;
+ }
+
+ h2 {
+   color: #9d3a9c;
+   font-style: italic;
+   margin-bottom: 20px;
+ }
+
+#picStudent {
+  margin-top: 25px;
 }
